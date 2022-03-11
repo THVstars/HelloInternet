@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
-@RequestMapping("/nasa") // this causes all route handlers that are added to this class to have /nasa added to their endpoints.
+@RequestMapping("/nasa") // this causes all route handlers that are added to this class/controller to have /nasa added to their endpoints.
 public class NasaController {
 
     @Autowired
