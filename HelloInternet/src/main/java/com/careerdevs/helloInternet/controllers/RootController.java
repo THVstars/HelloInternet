@@ -7,9 +7,6 @@ import java.util.Random;
 
 @RestController // This @RestController annotation is required so that the route handlers we add to the class are acknowledged and implemented. Without it, the route handlers would be ignored and rendered useless.
 public class RootController {
-    public static void main(String[] args) {
-
-    }
 
     @GetMapping("/")
     private String rootRoute() {
@@ -19,7 +16,7 @@ public class RootController {
     @GetMapping("/random")
     private int randomNumber() {
         Random randomizer = new Random();
-        int randomNumber = randomizer.nextInt(10-1) + 1;
+        int randomNumber = randomizer.nextInt(101-1);
         return randomNumber;
     }
 
@@ -30,4 +27,5 @@ public class RootController {
         String randomJoke = jokes[randomizer.nextInt(4-1)];
         return randomJoke;
     }
+
 }
