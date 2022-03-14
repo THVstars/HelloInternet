@@ -30,15 +30,10 @@ public class RootController {
         return randomJoke;
     }
 
-    @GetMapping("/number")
-    public String noName() {
-        return "You didn't choose a number!";
-    } // two handler method so that if no number is inputted, this prints instead of an error message. had to use this method because required = false did not work on the path variable like it did on request param.
-
-    @GetMapping("/number/{chosenNumber}") // /{chosenNumber} is a PathVariable. The value of the PathVariable is assigned below, along with the data type (String) that it will be. The chosenNumber is added manually when you type in the URL into a browser.
-    public String printNumber(@PathVariable(value = "chosenNumber") String chosenNumber) { // since the variable name and parameter name are the same, value = "chosenNumber" isn't required here, but I left it here as an example for future reference.
+    @GetMapping({"/number", "/number/{chosenNumber}"}) // /{chosenNumber} is a PathVariable. The value of the PathVariable is assigned below, along with the data type (String) that it will be. The chosenNumber is added manually when you type in the URL into a browser.
+    public String printNumber(@PathVariable(required = false, value = "chosenNumber") String chosenNumber) { // since the variable name and parameter name are the same, value = "chosenNumber" isn't required here, but I left it here as an example for future reference.
         return "Here's your number: " + chosenNumber + "!";
-    }
+    } // This includes two different, possible paths within the {} next to GetMapping. If no number is entered, it'll return "Here's your number: null!" instead of a number. Unlike with RequestParam, the two possible paths must be included next to GetMapping.
 
     @GetMapping("/name")
     public String printName(@RequestParam(required = false) String name) { // In this example, I decided to exclude the value = "name" since the variable name and parameter name are the same. required = "false" makes the variable/parameter not required, and if no name is added, it'll return "Welcome, null!" instead.
