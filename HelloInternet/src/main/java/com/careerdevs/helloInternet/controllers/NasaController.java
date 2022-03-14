@@ -16,11 +16,11 @@ public class NasaController {
     private Environment env;
 
     @GetMapping("/apod")
-    public Object apodHandler(RestTemplate restTemplate) {
+    public Object apodHandler(RestTemplate restTemplate) { // RestTemplate allows you to make HTTP requests from outside your server.
         return restTemplate.getForObject("https://api.nasa.gov/planetary/apod?api_key=" + env.getProperty("NASA_KEY"), Object.class);
     } // the path is /nasa/apod due to the RequestMapping "annotation" added at the beginning.
 
-    @GetMapping("/apodByDate/{date}") // /{date} is a PathVariable. The value of the PathVariable is assigned below, along with the data type (String) that it will be. The date is added manually when you type in the URL into a browser.
+    @GetMapping("/apodByDate/{date}") // /{date} is a PathVariable. The value of the PathVariable is assigned below, along with the data type (String) that it will be. The date is added manually when you type in the URL into a browser in this format: YYYY-MM-DD.
     public Object apodDateMod(@PathVariable(value = "date") String date, RestTemplate restTemplate) {
         return restTemplate.getForObject("https://api.nasa.gov/planetary/apod?api_key=" + env.getProperty("NASA_KEY") + "&date=" + date, Object.class);
     }

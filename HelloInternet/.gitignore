@@ -2,7 +2,7 @@
 
 src/main/resources/application.properties
 
-##
+# You can find the exact paths of classes/files/etc by right clicking, selecting Copy Path/Reference, selecting Path From Content Root.
 
 HELP.md
 target/
