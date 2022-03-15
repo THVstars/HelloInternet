@@ -31,7 +31,7 @@ public class RootController {
     }
 
     @GetMapping({"/number", "/number/{chosenNumber}"}) // /{chosenNumber} is a PathVariable. The value of the PathVariable is assigned below, along with the data type (String) that it will be. The chosenNumber is added manually when you type in the URL into a browser.
-    public String printNumber(@PathVariable(required = false, value = "chosenNumber") String chosenNumber) { // since the variable name and parameter name are the same, value = "chosenNumber" isn't required here, but I left it here as an example for future reference.
+    public String printNumber(@PathVariable(required = false, value = "chosenNumber") String chosenNumber) { // since the path variable name and parameter name are the same, value = "chosenNumber" isn't required here, but I left it here as an example for future reference.
         return "Here's your number: " + chosenNumber + "!";
     } // This includes two different, possible paths within the {} next to GetMapping. If no number is entered, it'll return "Here's your number: null!" instead of a number. Unlike with RequestParam, the two possible paths must be included next to GetMapping.
 
