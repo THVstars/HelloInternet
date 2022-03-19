@@ -2,10 +2,7 @@ package com.careerdevs.helloInternet.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
@@ -24,5 +21,15 @@ public class NasaController {
     public Object apodDateMod(@PathVariable(value = "date") String date, RestTemplate restTemplate) {
         return restTemplate.getForObject("https://api.nasa.gov/planetary/apod?api_key=" + env.getProperty("NASA_KEY") + "&date=" + date, Object.class);
     }
+    
+    @GetMapping("/pickFive")
+    public Object pickFive(@RequestParam int count, RestTemplate restTemplate){
+        return restTemplate.getForObject("https://api.nasa.gov/planetary/apod?api_key=" + env.getProperty("NASA_KEY") + "&count=" + count, Object.class);
+    } // example link: http://localhost:8080/nasa/pickFive?count=7
+
+    @GetMapping("/getPhotosInRange")
+    public Object getPhotosInRange(@RequestParam String startDate, String endDate, RestTemplate restTemplate){
+        return restTemplate.getForObject("https://api.nasa.gov/planetary/apod?api_key=" + env.getProperty("NASA_KEY") + "&start_date=" + startDate + "&end_date=" + endDate, Object.class);
+    } // example link: http://localhost:8080/nasa/getPhotosInRange?startDate=2020-10-1&endDate=2020-11-17
 
 }
